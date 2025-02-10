@@ -24,12 +24,12 @@ public class Becario {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     @PrePersist
-    @Column(updatable = false)
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }

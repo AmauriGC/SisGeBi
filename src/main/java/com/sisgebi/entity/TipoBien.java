@@ -18,12 +18,12 @@ public class TipoBien {
     @Enumerated(EnumType.STRING)
     private Status status; // Asume que tienes una enum Status {ACTIVO, INACTIVO}
 
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     @PrePersist
-    @Column(updatable = false)
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }

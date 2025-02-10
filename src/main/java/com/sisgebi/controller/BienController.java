@@ -24,17 +24,17 @@ public class BienController {
         return bienService.getAllBienById(id);
     }
 
-    @PostMapping("createBien")
+    @PostMapping("/createBien")
     public Bien createBien(@RequestBody Bien bien) {
         return bienService.createBien(bien);
     }
 
-    @PutMapping("updateBien/{id}")
+    @PutMapping("/updateBien/{id}")
     public Bien updateBien(@PathVariable Long id, @RequestBody Bien bien) {
         return bienService.updateBien(id, bien);
     }
 
-    @DeleteMapping("deleteBien/{id}")
+    @DeleteMapping("/deleteBien/{id}")
     public void deleteBien(@PathVariable Long id) {
         bienService.deleteBien(id);
     }

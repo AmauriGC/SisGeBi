@@ -24,17 +24,17 @@ public class TipoBienController {
         return tipoBienService.getAllTipoBienById(id);
     }
 
-    @PostMapping("createTipoBien")
+    @PostMapping("/createTipoBien")
     public TipoBien createTipoBien(@RequestBody TipoBien tipoBien) {
         return tipoBienService.createTipoBien(tipoBien);
     }
 
-    @PutMapping("updateTipoBien/{id}")
+    @PutMapping("/updateTipoBien/{id}")
     public TipoBien updateTipoBien(@PathVariable Long id, @RequestBody TipoBien tipoBien) {
         return tipoBienService.updateTipoBien(id, tipoBien);
     }
 
-    @DeleteMapping("deleteTipoBien/{id}")
+    @DeleteMapping("/deleteTipoBien/{id}")
     public void deleteTipoBien(@PathVariable Long id) {
         tipoBienService.deleteTipoBien(id);
     }

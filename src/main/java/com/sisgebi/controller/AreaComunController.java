@@ -24,17 +24,17 @@ public class AreaComunController {
         return areaComunService.getAllAreaComunById(id);
     }
 
-    @PostMapping("createAreaComun")
+    @PostMapping("/createAreaComun")
     public AreaComun createAreaComun(@RequestBody AreaComun areaComun) {
         return areaComunService.createAreaComun(areaComun);
     }
 
-    @PutMapping("updateAreaComun/{id}")
+    @PutMapping("/updateAreaComun/{id}")
     public AreaComun updateAreaComun(@PathVariable Long id, @RequestBody AreaComun areaComun) {
         return areaComunService.updateAreaComun(id, areaComun);
     }
 
-    @DeleteMapping("deleteAreaComun/{id}")
+    @DeleteMapping("/deleteAreaComun/{id}")
     public void deleteAreaComun(@PathVariable Long id) {
         areaComunService.deleteAreaComun(id);
     }

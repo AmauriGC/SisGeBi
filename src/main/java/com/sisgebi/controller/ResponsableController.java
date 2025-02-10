@@ -24,17 +24,17 @@ public class ResponsableController {
         return responsableService.getAllResponsableById(id);
     }
 
-    @PostMapping("createResponsable")
+    @PostMapping("/createResponsable")
     public Responsable createResponsable(@RequestBody Responsable responsable) {
         return responsableService.createResponsable(responsable);
     }
 
-    @PutMapping("updateResponsable/{id}")
+    @PutMapping("/updateResponsable/{id}")
     public Responsable updateResponsable(@PathVariable Long id, @RequestBody Responsable responsable) {
         return responsableService.updateResponsable(id, responsable);
     }
 
-    @DeleteMapping("deleteResponsable/{id}")
+    @DeleteMapping("/deleteResponsable/{id}")
     public void deleteResponsable(@PathVariable Long id) {
         responsableService.deleteResponsable(id);
     }

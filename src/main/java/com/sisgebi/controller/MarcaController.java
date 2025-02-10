@@ -24,17 +24,17 @@ public class MarcaController {
         return marcaService.getAllMarcaById(id);
     }
 
-    @PostMapping("createMarca")
+    @PostMapping("/createMarca")
     public Marca createMarca(@RequestBody Marca marca) {
         return marcaService.createMarca(marca);
     }
 
-    @PutMapping("updateMarca/{id}")
+    @PutMapping("/updateMarca/{id}")
     public Marca updateMarca(@PathVariable Long id, @RequestBody Marca marca) {
         return marcaService.updateMarca(id, marca);
     }
 
-    @DeleteMapping("deleteMarca/{id}")
+    @DeleteMapping("/deleteMarca/{id}")
     public void deleteMarca(@PathVariable Long id) {
         marcaService.deleteMarca(id);
     }

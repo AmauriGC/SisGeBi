@@ -22,9 +22,17 @@ public class HistoricoBien {
 
     private String detalle;
 
+    @Column(updatable = false)
     private LocalDateTime fecha;
 
-    private String usuarioResponsable;
+    @PrePersist
+    protected void onCreate() {
+        this.fecha = LocalDateTime.now();
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_responsable")
+    private Responsable responsable;
 
     public Long getIdHistorico() {
         return idHistorico;
@@ -66,11 +74,11 @@ public class HistoricoBien {
         this.fecha = fecha;
     }
 
-    public String getUsuarioResponsable() {
-        return usuarioResponsable;
+    public Responsable getResponsable() {
+        return responsable;
     }
 
-    public void setUsuarioResponsable(String usuarioResponsable) {
-        this.usuarioResponsable = usuarioResponsable;
+    public void setResponsable(Responsable responsable) {
+        this.responsable = responsable;
     }
 }

@@ -24,12 +24,12 @@ public class Modelo {
     @JoinColumn(name = "id_marca", nullable = false)
     private Marca marca;
 
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     @PrePersist
-    @Column(updatable = false)
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }

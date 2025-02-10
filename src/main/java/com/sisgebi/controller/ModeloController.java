@@ -24,17 +24,17 @@ public class ModeloController {
         return modeloService.getAllModeloById(id);
     }
 
-    @PostMapping("createModelo")
+    @PostMapping("/createModelo")
     public Modelo createModelo(@RequestBody Modelo modelo) {
         return modeloService.createModelo(modelo);
     }
 
-    @PutMapping("updateModelo/{id}")
+    @PutMapping("/updateModelo/{id}")
     public Modelo updateModelo(@PathVariable Long id, @RequestBody Modelo modelo) {
         return modeloService.updateModelo(id, modelo);
     }
 
-    @DeleteMapping("deleteModelo/{id}")
+    @DeleteMapping("/deleteModelo/{id}")
     public void deleteModelo(@PathVariable Long id) {
         modeloService.deleteModelo(id);
     }

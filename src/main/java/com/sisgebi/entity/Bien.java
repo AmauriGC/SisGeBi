@@ -30,8 +30,8 @@ public class Bien {
     private String codigo;
 
     @ManyToOne
-    @JoinColumn(name = "id_ubicacion_actual")
-    private Ubicacion ubicacionActual;
+    @JoinColumn(name = "id_ubicacion")
+    private Ubicacion ubicacion;
 
     @ManyToOne
     @JoinColumn(name = "id_responsable")
@@ -40,12 +40,12 @@ public class Bien {
     @Enumerated(EnumType.STRING)
     private EstadoBien estado; // Enum: DISPONIBLE, ASIGNADO, REPARACION, BAJA
 
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     @PrePersist
-    @Column(updatable = false)
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
@@ -103,12 +103,12 @@ public class Bien {
         this.codigo = codigo;
     }
 
-    public Ubicacion getUbicacionActual() {
-        return ubicacionActual;
+    public Ubicacion getUbicacion() {
+        return ubicacion;
     }
 
-    public void setUbicacionActual(Ubicacion ubicacionActual) {
-        this.ubicacionActual = ubicacionActual;
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public Responsable getResponsable() {

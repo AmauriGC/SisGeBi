@@ -24,17 +24,17 @@ public class HistoricoBienController {
         return historicoBienService.getAllHistoricoBienById(id);
     }
 
-    @PostMapping("createHistoricoBien")
+    @PostMapping("/createHistoricoBien")
     public HistoricoBien createHistoricoBien(@RequestBody HistoricoBien historicoBien) {
         return historicoBienService.createHistoricoBien(historicoBien);
     }
 
-    @PutMapping("updateHistoricoBien/{id}")
+    @PutMapping("/updateHistoricoBien/{id}")
     public HistoricoBien updateHistoricoBien(@PathVariable Long id, @RequestBody HistoricoBien historicoBien) {
         return historicoBienService.updateHistoricoBien(id, historicoBien);
     }
 
-    @DeleteMapping("deleteHistoricoBien/{id}")
+    @DeleteMapping("/deleteHistoricoBien/{id}")
     public void deleteHistoricoBien(@PathVariable Long id) {
         historicoBienService.deleteHistoricoBien(id);
     }
