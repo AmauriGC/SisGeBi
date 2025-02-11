@@ -2,10 +2,10 @@ package com.sisgebi.controller;
 
 import com.sisgebi.entity.Responsable;
 import com.sisgebi.service.ResponsableService;
+import com.sisgebi.response.ResponsableResponseRest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/responsable")
@@ -15,27 +15,27 @@ public class ResponsableController {
     private ResponsableService responsableService;
 
     @GetMapping("/getAll")
-    public List<Responsable> getAllResponsable() {
-        return responsableService.getAll();
+    public ResponseEntity<ResponsableResponseRest> getAllResponsables() {
+        return responsableService.getAllResponsables();
     }
 
     @GetMapping("/getAllById/{id}")
-    public Responsable getAllResponsableById(@PathVariable Long id) {
-        return responsableService.getAllResponsableById(id);
+    public ResponseEntity<ResponsableResponseRest> getResponsableById(@PathVariable Long id) {
+        return responsableService.getResponsableById(id);
     }
 
     @PostMapping("/createResponsable")
-    public Responsable createResponsable(@RequestBody Responsable responsable) {
+    public ResponseEntity<ResponsableResponseRest> createResponsable(@RequestBody Responsable responsable) {
         return responsableService.createResponsable(responsable);
     }
 
     @PutMapping("/updateResponsable/{id}")
-    public Responsable updateResponsable(@PathVariable Long id, @RequestBody Responsable responsable) {
+    public ResponseEntity<ResponsableResponseRest> updateResponsable(@PathVariable Long id, @RequestBody Responsable responsable) {
         return responsableService.updateResponsable(id, responsable);
     }
 
     @DeleteMapping("/deleteResponsable/{id}")
-    public void deleteResponsable(@PathVariable Long id) {
-        responsableService.deleteResponsable(id);
+    public ResponseEntity<ResponsableResponseRest> deleteResponsable(@PathVariable Long id) {
+        return responsableService.deleteResponsable(id);
     }
 }

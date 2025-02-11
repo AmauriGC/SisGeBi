@@ -2,6 +2,8 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,14 +15,16 @@ public class TipoBien {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTipoBien;
 
+    @NotBlank(message = "El nombre del tipo de bien es obligatorio")
+    @Column(name = "nombre_tipo_bien", nullable = false)
     private String nombreTipoBien;
 
+    @NotNull(message = "El estado es obligatorio")
     @Enumerated(EnumType.STRING)
-    private Status status; // Asume que tienes una enum Status {ACTIVO, INACTIVO}
+    private Status status;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -41,19 +45,19 @@ public class TipoBien {
         this.idTipoBien = idTipoBien;
     }
 
-    public String getNombreTipoBien() {
+    public @NotBlank(message = "El nombre del tipo de bien es obligatorio") String getNombreTipoBien() {
         return nombreTipoBien;
     }
 
-    public void setNombreTipoBien(String nombreTipoBien) {
+    public void setNombreTipoBien(@NotBlank(message = "El nombre del tipo de bien es obligatorio") String nombreTipoBien) {
         this.nombreTipoBien = nombreTipoBien;
     }
 
-    public Status getStatus() {
+    public @NotNull(message = "El estado es obligatorio") Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(@NotNull(message = "El estado es obligatorio") Status status) {
         this.status = status;
     }
 

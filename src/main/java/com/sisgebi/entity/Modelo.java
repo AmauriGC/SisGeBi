@@ -2,6 +2,8 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,20 +15,23 @@ public class Modelo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idModelo;
 
+    @NotBlank(message = "El nombre del modelo es obligatorio")
+    @Column(name = "nombre_modelo", nullable = false)
     private String nombreModelo;
 
     private String foto;
 
+    @NotNull(message = "El estado es obligatorio")
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @NotNull(message = "La marca es obligatoria")
     @ManyToOne
     @JoinColumn(name = "id_marca", nullable = false)
     private Marca marca;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -47,11 +52,11 @@ public class Modelo {
         this.idModelo = idModelo;
     }
 
-    public String getNombreModelo() {
+    public @NotBlank(message = "El nombre del modelo es obligatorio") String getNombreModelo() {
         return nombreModelo;
     }
 
-    public void setNombreModelo(String nombreModelo) {
+    public void setNombreModelo(@NotBlank(message = "El nombre del modelo es obligatorio") String nombreModelo) {
         this.nombreModelo = nombreModelo;
     }
 
@@ -63,19 +68,19 @@ public class Modelo {
         this.foto = foto;
     }
 
-    public Status getStatus() {
+    public @NotNull(message = "El estado es obligatorio") Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(@NotNull(message = "El estado es obligatorio") Status status) {
         this.status = status;
     }
 
-    public Marca getMarca() {
+    public @NotNull(message = "La marca es obligatoria") Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(@NotNull(message = "La marca es obligatoria") Marca marca) {
         this.marca = marca;
     }
 

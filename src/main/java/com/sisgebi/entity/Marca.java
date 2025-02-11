@@ -2,6 +2,8 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,9 +15,13 @@ public class Marca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMarca;
 
+    @NotBlank(message = "El nombre de la marca es obligatorio")
+    @Column(name = "nombre_marca", nullable = false, unique = true)
     private String nombreMarca;
 
+    @NotNull(message = "El estado de la marca es obligatorio")
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Status status;
 
     @Column(updatable = false)

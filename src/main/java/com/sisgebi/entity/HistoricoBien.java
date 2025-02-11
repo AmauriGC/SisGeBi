@@ -2,6 +2,8 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.TipoMovimiento;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,13 +15,16 @@ public class HistoricoBien {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHistorico;
 
+    @NotNull(message = "El bien es obligatorio")
     @ManyToOne
     @JoinColumn(name = "id_bien", nullable = false)
     private Bien bien;
 
+    @NotNull(message = "El tipo de movimiento es obligatorio")
     @Enumerated(EnumType.STRING)
-    private TipoMovimiento tipoMovimiento; // Enum: ASIGNACION, CAMBIO_UBICACION, CAMBIO_RESPONSABLE, CAMBIO_ESTADO
+    private TipoMovimiento tipoMovimiento;
 
+    @NotBlank(message = "El detalle es obligatorio")
     private String detalle;
 
     @Column(updatable = false)
@@ -42,27 +47,27 @@ public class HistoricoBien {
         this.idHistorico = idHistorico;
     }
 
-    public Bien getBien() {
+    public @NotNull(message = "El bien es obligatorio") Bien getBien() {
         return bien;
     }
 
-    public void setBien(Bien bien) {
+    public void setBien(@NotNull(message = "El bien es obligatorio") Bien bien) {
         this.bien = bien;
     }
 
-    public TipoMovimiento getTipoMovimiento() {
+    public @NotNull(message = "El tipo de movimiento es obligatorio") TipoMovimiento getTipoMovimiento() {
         return tipoMovimiento;
     }
 
-    public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
+    public void setTipoMovimiento(@NotNull(message = "El tipo de movimiento es obligatorio") TipoMovimiento tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
     }
 
-    public String getDetalle() {
+    public @NotBlank(message = "El detalle es obligatorio") String getDetalle() {
         return detalle;
     }
 
-    public void setDetalle(String detalle) {
+    public void setDetalle(@NotBlank(message = "El detalle es obligatorio") String detalle) {
         this.detalle = detalle;
     }
 

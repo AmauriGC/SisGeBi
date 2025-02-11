@@ -2,7 +2,9 @@ package com.sisgebi.controller;
 
 import com.sisgebi.entity.TipoBien;
 import com.sisgebi.service.TipoBienService;
+import com.sisgebi.response.TipoBienResponseRest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,27 +17,27 @@ public class TipoBienController {
     private TipoBienService tipoBienService;
 
     @GetMapping("/getAll")
-    public List<TipoBien> getAllTipoBien() {
-        return tipoBienService.getAll();
+    public ResponseEntity<TipoBienResponseRest> getAllTipoBien() {
+        return tipoBienService.getAllTipoBienes();
     }
 
     @GetMapping("/getAllById/{id}")
-    public TipoBien getAllTipoBienById(@PathVariable Long id) {
-        return tipoBienService.getAllTipoBienById(id);
+    public ResponseEntity<TipoBienResponseRest> getTipoBienById(@PathVariable Long id) {
+        return tipoBienService.getTipoBienById(id);
     }
 
     @PostMapping("/createTipoBien")
-    public TipoBien createTipoBien(@RequestBody TipoBien tipoBien) {
+    public ResponseEntity<TipoBienResponseRest> createTipoBien(@RequestBody TipoBien tipoBien) {
         return tipoBienService.createTipoBien(tipoBien);
     }
 
     @PutMapping("/updateTipoBien/{id}")
-    public TipoBien updateTipoBien(@PathVariable Long id, @RequestBody TipoBien tipoBien) {
+    public ResponseEntity<TipoBienResponseRest> updateTipoBien(@PathVariable Long id, @RequestBody TipoBien tipoBien) {
         return tipoBienService.updateTipoBien(id, tipoBien);
     }
 
     @DeleteMapping("/deleteTipoBien/{id}")
-    public void deleteTipoBien(@PathVariable Long id) {
-        tipoBienService.deleteTipoBien(id);
+    public ResponseEntity<TipoBienResponseRest> deleteTipoBien(@PathVariable Long id) {
+        return tipoBienService.deleteTipoBien(id);
     }
 }

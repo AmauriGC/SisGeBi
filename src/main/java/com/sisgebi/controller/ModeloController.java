@@ -1,11 +1,11 @@
 package com.sisgebi.controller;
 
 import com.sisgebi.entity.Modelo;
+import com.sisgebi.response.ModeloResponseRest;
 import com.sisgebi.service.ModeloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/modelo")
@@ -15,27 +15,27 @@ public class ModeloController {
     private ModeloService modeloService;
 
     @GetMapping("/getAll")
-    public List<Modelo> getAllModelo() {
-        return modeloService.getAll();
+    public ResponseEntity<ModeloResponseRest> getAllModelos() {
+        return modeloService.getAllModelos();
     }
 
     @GetMapping("/getAllById/{id}")
-    public Modelo getAllModeloById(@PathVariable Long id) {
-        return modeloService.getAllModeloById(id);
+    public ResponseEntity<ModeloResponseRest> getModeloById(@PathVariable Long id) {
+        return modeloService.getModeloById(id);
     }
 
     @PostMapping("/createModelo")
-    public Modelo createModelo(@RequestBody Modelo modelo) {
+    public ResponseEntity<ModeloResponseRest> createModelo(@RequestBody Modelo modelo) {
         return modeloService.createModelo(modelo);
     }
 
     @PutMapping("/updateModelo/{id}")
-    public Modelo updateModelo(@PathVariable Long id, @RequestBody Modelo modelo) {
+    public ResponseEntity<ModeloResponseRest> updateModelo(@PathVariable Long id, @RequestBody Modelo modelo) {
         return modeloService.updateModelo(id, modelo);
     }
 
     @DeleteMapping("/deleteModelo/{id}")
-    public void deleteModelo(@PathVariable Long id) {
-        modeloService.deleteModelo(id);
+    public ResponseEntity<ModeloResponseRest> deleteModelo(@PathVariable Long id) {
+        return modeloService.deleteModelo(id);
     }
 }

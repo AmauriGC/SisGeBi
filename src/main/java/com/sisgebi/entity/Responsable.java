@@ -2,6 +2,8 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,20 +15,26 @@ public class Responsable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResponsable;
 
+    @NotBlank(message = "El nombre completo es obligatorio")
+    @Column(name = "nombre_completo", nullable = false)
     private String nombreCompleto;
 
+    @NotBlank(message = "El usuario es obligatorio")
+    @Column(unique = true, nullable = false)
     private String usuario;
 
+    @NotBlank(message = "La contraseña es obligatoria")
     private String contrasena;
 
+    @NotBlank(message = "El lugar es obligatorio")
     private String lugar;
 
+    @NotNull(message = "El estado es obligatorio")
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -47,43 +55,43 @@ public class Responsable {
         this.idResponsable = idResponsable;
     }
 
-    public String getNombreCompleto() {
+    public @NotBlank(message = "El nombre completo es obligatorio") String getNombreCompleto() {
         return nombreCompleto;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
+    public void setNombreCompleto(@NotBlank(message = "El nombre completo es obligatorio") String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public String getUsuario() {
+    public @NotBlank(message = "El usuario es obligatorio") String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(@NotBlank(message = "El usuario es obligatorio") String usuario) {
         this.usuario = usuario;
     }
 
-    public String getContrasena() {
+    public @NotBlank(message = "La contraseña es obligatoria") String getContrasena() {
         return contrasena;
     }
 
-    public void setContrasena(String contrasena) {
+    public void setContrasena(@NotBlank(message = "La contraseña es obligatoria") String contrasena) {
         this.contrasena = contrasena;
     }
 
-    public String getLugar() {
+    public @NotBlank(message = "El lugar es obligatorio") String getLugar() {
         return lugar;
     }
 
-    public void setLugar(String lugar) {
+    public void setLugar(@NotBlank(message = "El lugar es obligatorio") String lugar) {
         this.lugar = lugar;
     }
 
-    public Status getStatus() {
+    public @NotNull(message = "El estado es obligatorio") Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(@NotNull(message = "El estado es obligatorio") Status status) {
         this.status = status;
     }
 

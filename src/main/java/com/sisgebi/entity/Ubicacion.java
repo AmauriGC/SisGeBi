@@ -2,31 +2,33 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.TipoUbicacion;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ubicaciones")
+@Table(name = "ubicacion")
 public class Ubicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUbicacion;
 
+    @NotNull(message = "El tipo de ubicación es obligatorio")
     @Enumerated(EnumType.STRING)
-    private TipoUbicacion tipoUbicacion; // Enum: AreaComun, Becario
+    @Column(name = "tipo_ubicacion", nullable = false)
+    private TipoUbicacion tipoUbicacion;
 
     @ManyToOne
-    @JoinColumn(name = "id_area")
+    @JoinColumn(name = "id_area", nullable = true)
     private AreaComun area;
 
     @ManyToOne
-    @JoinColumn(name = "id_becario")
+    @JoinColumn(name = "id_becario", nullable = true)
     private Becario becario;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -47,11 +49,11 @@ public class Ubicacion {
         this.idUbicacion = idUbicacion;
     }
 
-    public TipoUbicacion getTipoUbicacion() {
+    public @NotNull(message = "El tipo de ubicación es obligatorio") TipoUbicacion getTipoUbicacion() {
         return tipoUbicacion;
     }
 
-    public void setTipoUbicacion(TipoUbicacion tipoUbicacion) {
+    public void setTipoUbicacion(@NotNull(message = "El tipo de ubicación es obligatorio") TipoUbicacion tipoUbicacion) {
         this.tipoUbicacion = tipoUbicacion;
     }
 
