@@ -29,7 +29,7 @@ public class BienService {
             response.getBienResponse().setBienes(bienes);
             response.setMetadata("Respuesta OK", "00", "Consulta exitosa");
         } catch (Exception e) {
-            response.setMetadata("Error", "-1", "Error al consultar los bienes");
+            response.setMetadata("Respuesta FALLIDA", "-1", "Error al consultar los bienes");
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -48,7 +48,7 @@ public class BienService {
                 response.getBienResponse().setBienes(list);
                 response.setMetadata("Respuesta OK", "00", "Bien encontrado");
             } else {
-                response.setMetadata("Error", "-1", "Bien no encontrado");
+                response.setMetadata("Respuesta No Encontrada", "-1", "Bien no encontrado");
                 return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -65,8 +65,10 @@ public class BienService {
         List<Bien> list = new ArrayList<>();
 
         try {
+            // Setear la fecha de creación y actualización
             bien.setCreatedAt(LocalDateTime.now());
             bien.setUpdatedAt(LocalDateTime.now());
+
             Bien bienSaved = bienRepository.save(bien);
             if (bienSaved != null) {
                 list.add(bienSaved);
@@ -96,10 +98,17 @@ public class BienService {
                 return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
             }
 
+            // Actualizar los campos del bien
+            existingBien.setCodigo(bien.getCodigo());
             existingBien.setDescripcion(bien.getDescripcion());
             existingBien.setStatus(bien.getStatus());
-            existingBien.setUbicacionId(bien.getUbicacionId());
-            existingBien.setResponsableId(bien.getResponsableId());
+            existingBien.setTipoBien(bien.getTipoBien());
+            existingBien.setMarca(bien.getMarca());
+            existingBien.setModelo(bien.getModelo());
+            existingBien.setUbicacion(bien.getUbicacion());
+            existingBien.setResponsable(bien.getResponsable());
+
+            // Actualizar la fecha de modificación
             existingBien.setUpdatedAt(LocalDateTime.now());
 
             bienRepository.save(existingBien);

@@ -98,6 +98,7 @@ public class BecarioService {
 
             existingBecario.setNombreCompleto(becario.getNombreCompleto());
             existingBecario.setContraseña(becario.getContraseña());
+            existingBecario.setLugar(becario.getLugar());
             existingBecario.setStatus(becario.getStatus());
             existingBecario.setUpdatedAt(LocalDateTime.now());
 

@@ -3,6 +3,7 @@ package com.sisgebi.entity;
 import com.sisgebi.enums.Status;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -23,6 +24,7 @@ public class Modelo {
     @NotNull(message = "El estado del modelo es obligatorio")
     private Status status;
 
+    @DBRef
     private Marca marca;  // Relación con la marca
 
     private LocalDateTime createdAt;

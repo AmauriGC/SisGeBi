@@ -2,6 +2,7 @@ package com.sisgebi.entity;
 
 import com.sisgebi.enums.Status;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,13 +23,26 @@ public class Bien {
     @NotNull(message = "El estado es obligatorio")
     private Status status;
 
-    private String responsableId; // Relación con Responsable
-    private String ubicacionId;   // Relación con Ubicacion
+    @DBRef
+    private TipoBien tipoBien; // Relación con TipoBien
+
+    @DBRef
+    private Marca marca; // Relación con Marca
+
+    @DBRef
+    private Modelo modelo; // Relación con Modelo
+
+    @DBRef
+    private Ubicacion ubicacion; // Relación con Ubicacion
+
+    @DBRef
+    private Responsable responsable; // Relación con Responsable
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     // Getters y Setters
+
     public String getIdBien() {
         return idBien;
     }
@@ -61,20 +75,44 @@ public class Bien {
         this.status = status;
     }
 
-    public String getResponsableId() {
-        return responsableId;
+    public TipoBien getTipoBien() {
+        return tipoBien;
     }
 
-    public void setResponsableId(String responsableId) {
-        this.responsableId = responsableId;
+    public void setTipoBien(TipoBien tipoBien) {
+        this.tipoBien = tipoBien;
     }
 
-    public String getUbicacionId() {
-        return ubicacionId;
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setUbicacionId(String ubicacionId) {
-        this.ubicacionId = ubicacionId;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(Responsable responsable) {
+        this.responsable = responsable;
     }
 
     public LocalDateTime getCreatedAt() {

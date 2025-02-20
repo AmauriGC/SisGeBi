@@ -24,6 +24,10 @@ public class Becario {
     @NotBlank(message = "La contraseña es obligatoria")
     private String contraseña;
 
+
+    @NotBlank(message = "El lugar es obligatorio")
+    private String lugar;
+
     @NotNull(message = "El estado del becario es obligatorio")
     private Status status;
 
@@ -65,6 +69,14 @@ public class Becario {
 
     public Status getStatus() {
         return status;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
     public void setStatus(Status status) {
